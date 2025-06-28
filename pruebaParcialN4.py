@@ -1,7 +1,8 @@
 stock_zapatillas = 20
-reserva_zapatilla = -1
+reservas_zapatilla = 0
 vip = -1
-
+frase_secreta1= 'EstoyEnListaDeReserva'
+lista_nombres = []
 while True:
     print("\nTOTEM AUTOATENCIÓN RESERVA STRIKE")
     print("1.- Reservar zapatillas")
@@ -18,22 +19,26 @@ while True:
         except:
             print("Debe ingresar una opción válida!!")
     if opcion == 1:
-        stock_zapatillas = stock_zapatillas - reserva_zapatilla
+        #def opcion 1
         print("-- Reservar Zapatillas --")
         nombre_comprador = input("Nombre del comprador: ")
-        frase_secreta = input("Digite la palabra secreta para comfirmar la reserva: ")
-        print (f"Reserva realizada excitosamente para {nombre_comprador}")
+        lista_nombres.append(nombre_comprador)
+        frase_secreta = input("Digite la palabra secreta para confirmar la reserva: ")
+        if frase_secreta == frase_secreta1:
+                stock_zapatillas = stock_zapatillas - 1
+                reservas_zapatilla = reservas_zapatilla + 1
+                print (f"Reserva realizada excitosamente para {nombre_comprador}")
+        else:print("Error: palabra clave incorrecta. Reserva no realizada")      
     elif opcion == 2:
+        #def 2
         print("-- Buscar Zapatillas Reservadas --")
-        try:
-            print(input("Nombre del comprador a buscar: "))
-            print(f"Reserva encontrada: {nombre_comprador} -1 par(es) (estándar)")
-            
-            
-            
+        nombre_ingresado = (input("Nombre del comprador a buscar: "))
+        if nombre_ingresado in lista_nombres:
+            #cantidad = lista_nombres[nombre_ingresado]
+            print(f"Reserva encontrada: {nombre_comprador} - 1 par(es) (estándar)")
     elif opcion == 3:
         print("-- Ver Stock de Reservas --")
-        print(f"Pares Resesvados: {reserva_zapatilla}")      
+        print(f"Pares Resesvados: {reservas_zapatilla}")      
         print(f"Pares disponibles: {stock_zapatillas}")
         
     elif opcion == 4:
