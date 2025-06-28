@@ -19,22 +19,24 @@ while True:
         except:
             print("Debe ingresar una opción válida!!")
     if opcion == 1:
-        #def opcion 1
         print("-- Reservar Zapatillas --")
         nombre_comprador = input("Nombre del comprador: ")
-        lista_nombres.append(nombre_comprador)
-        frase_secreta = input("Digite la palabra secreta para confirmar la reserva: ")
-        if frase_secreta == frase_secreta1:
-                stock_zapatillas = stock_zapatillas - 1
-                reservas_zapatilla = reservas_zapatilla + 1
-                print (f"Reserva realizada excitosamente para {nombre_comprador}")
-        else:print("Error: palabra clave incorrecta. Reserva no realizada")      
+        if nombre_comprador not in lista_nombres:
+            frase_secreta = input("Digite la palabra secreta para confirmar la reserva: ")
+            if frase_secreta == frase_secreta1:
+                if stock_zapatillas == 0:
+                    print("No hay stock para reserva.")
+                else: 
+                        stock_zapatillas = stock_zapatillas - 1
+                        reservas_zapatilla = reservas_zapatilla + 1
+                        lista_nombres.append(nombre_comprador)
+                        print (f"Reserva realizada excitosamente para {nombre_comprador}")
+            else:print("Error: palabra clave incorrecta. Reserva no realizada")
+        else: print("Este nombre ya cuenta con reserva.")      
     elif opcion == 2:
-        #def 2
         print("-- Buscar Zapatillas Reservadas --")
         nombre_ingresado = (input("Nombre del comprador a buscar: "))
         if nombre_ingresado in lista_nombres:
-            #cantidad = lista_nombres[nombre_ingresado]
             print(f"Reserva encontrada: {nombre_comprador} - 1 par(es) (estándar)")
     elif opcion == 3:
         print("-- Ver Stock de Reservas --")
